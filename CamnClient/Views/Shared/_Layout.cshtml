@@ -1,0 +1,56 @@
+﻿@inject Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnv
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <title>@ViewBag.Title</title>
+    <style>
+        /* overrides image paths in dnv-lib */
+        .leaflet-draw-toolbar a {
+            background-image: url('./images/spritesheet.png') !important;
+            background-image: linear-gradient(transparent,transparent),url('./images/spritesheet.svg') !important;
+            background-repeat: no-repeat;
+            background-size: 300px 30px;
+            background-clip: padding-box;
+        }
+
+        .leaflet-retina .leaflet-draw-toolbar a {
+            background-image: url('./images/spritesheet-2x.png');
+            background-image: linear-gradient(transparent,transparent),url('./images/spritesheet.svg')
+        }
+    </style>
+    <!-- cluster -->
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.4/dist/MarkerCluster.Default.css">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.4/dist/MarkerCluster.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <environment include="Development">
+        <base href="/">
+        <script>
+            window.environment = 'Development';
+        </script>
+    </environment>
+    <environment include="Staging">
+        <base href="/">
+        <script>
+            window.environment = 'Staging';
+        </script>
+    </environment>
+    <environment include="Production">
+        <base href="/">
+        <script>
+            window.environment = 'Production';
+        </script>
+    </environment>
+
+    <script defer src="~/fontawesome/all.js"></script>
+
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body>
+    @RenderBody()
+</body>
+</html>

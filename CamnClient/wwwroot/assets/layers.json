@@ -1,0 +1,161 @@
+[
+  { 
+    "id": 11,
+    "name": "Trails",
+    "type": 1,
+    "minZoom": 3,
+    "featureLayers": [
+      {
+        "url": "https://www.geoweb.dnv.org/arcgis/rest/services/Data_FireCommand/MapServer/1",
+        "opacity": 1.0
+      },
+      {
+        "url": "https://www.geoweb.dnv.org/arcgis/rest/services/Data_FireCommand/MapServer/2",
+        "opacity": 1.0
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Hydrants",
+    "type": 1,
+    "minZoom": 3,
+    "featureLayers": [
+      {
+        "url": "https://www.geoweb.dnv.org/arcgis/rest/services/Data_FireCommand/MapServer/4",
+        "opacity": 1.0
+      },
+      {
+        "url": "https://www.geoweb.dnv.org/arcgis/rest/services/Data_FireCommand/MapServer/5",
+        "opacity": 1.0
+      },
+      {
+        "url": "https://www.geoweb.dnv.org/arcgis/rest/services/Data_FireCommand/MapServer/6",
+        "opacity": 1.0
+      },
+      {
+        "url": "https://www.geoweb.dnv.org/arcgis/rest/services/Data_FireCommand/MapServer/7",
+        "opacity": 1.0
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "name": "Gates",
+    "type": 0,
+    "minZoom": 2,
+    "featureLayers": [
+      {
+        "url": "https://www.geoweb.dnv.org/arcgis/rest/services/Data_FireCommand/MapServer/9",
+        "opacity": 1.0
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "name": "Bollards",
+    "type": 0,
+    "minZoom": 2,
+    "featureLayers": [
+      {
+        "url": "https://www.geoweb.dnv.org/arcgis/rest/services/Data_FireCommand_v2/MapServer/11",
+        "opacity": 1.0
+      },
+      {
+        "url": "https://www.geoweb.dnv.org/arcgis/rest/services/Data_FireCommand_v2/MapServer/12",
+        "opacity": 1.0
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "name": "PrePlans",
+    "type": 1,
+    "minZoom": 4,
+    "featureLayers": [
+      {
+        "url": "https://www.geoweb.dnv.org/arcgis/rest/services/Data_FireCommand_v2/MapServer/18",
+        "opacity": 1.0,
+        "propertyLabel": "PrePlan"
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "name": "Creek",
+    "type": 1,
+    "minZoom": 4,
+    "featureLayers": [
+      {
+        "url": "https://geotools.dnv.org/arcgis/rest/services/Data_CAMN/MapServer/0",
+        "opacity": 1.0,
+        "propertyLabel": "Creek"
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "name": "Ditch",
+    "type": 1,
+    "minZoom": 4,
+    "featureLayers": [
+      {
+        "url": "https://geotools.dnv.org/arcgis/rest/services/Data_CAMN/MapServer/1",
+        "opacity": 1.0,
+        "propertyLabel": "Ditch"
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "name": "Flume",
+    "type": 1,
+    "minZoom": 4,
+    "featureLayers": [
+      {
+        "url": "https://geotools.dnv.org/arcgis/rest/services/Data_CAMN/MapServer/2",
+        "opacity": 1.0,
+        "propertyLabel": "Flume"
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "name": "Swale",
+    "type": 1,
+    "minZoom": 4,
+    "featureLayers": [
+      {
+        "url": "https://geotools.dnv.org/arcgis/rest/services/Data_CAMN/MapServer/3",
+        "opacity": 1.0,
+        "propertyLabel": "Swale"
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "name": "Culvert",
+    "type": 1,
+    "minZoom": 4,
+    "featureLayers": [
+      {
+        "url": "https://geotools.dnv.org/arcgis/rest/services/Data_CAMN/MapServer/4",
+        "opacity": 1.0,
+        "propertyLabel": "Culvert"
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "name": "Storm Inlet",
+    "type": 1,
+    "minZoom": 4,
+    "featureLayers": [
+      {
+        "url": "https://geotools.dnv.org/arcgis/rest/services/Data_CAMN/MapServer/5",
+        "opacity": 1.0,
+        "propertyLabel": "Storm Inlet"
+      }
+    ]
+  }
+]

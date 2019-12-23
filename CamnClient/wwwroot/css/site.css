@@ -1,0 +1,31 @@
+body,
+html {
+  height: 100%;
+  min-height: 100%;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: 'Avenir LT W01_55 Roman1475520', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.nav-title {
+  padding: 0px;
+  font-size: 1.125rem;
+  font-family: 'Avenir LT W01_85 Heavy1475544', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.tool-title {
+  font-size: 1rem;
+  font-family: 'Avenir LT W01_85 Heavy1475544', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.section-heading {
+  font-size: 1rem;
+}
+
+/* IE10+ */
+::-ms-clear {
+  display: none;
+}

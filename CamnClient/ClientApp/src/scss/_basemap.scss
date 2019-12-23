@@ -1,0 +1,121 @@
+.basemap-list {
+  width: 305px;
+  bottom: 120px;
+  background-color: $white;
+  padding-right: 15px;
+
+  .basemap-tiles {
+    max-height: 250px;
+    overflow-y: hidden;
+  }
+}
+
+.basemap-container {
+  width: 301px;
+  bottom: 0px;
+  padding-bottom: 15px;
+  transition: all 0.5s;
+  position: absolute;
+
+  .basemap-tiles{
+    label{
+      width: 100%;
+      height: 64px;
+    }
+  }
+
+  .ml-2 {
+    margin-left: 0px !important;
+
+    .row.mt-2 {
+      &.layer-title {
+        margin-right: 0px;
+        .col-auto {
+          width: auto;
+          padding-right: 0px;
+          float: left;
+        }
+
+        .btn-basemap{
+          margin-right: 0px;
+        }
+      }
+
+      .col-auto.ml-2 {
+        margin-left: 10px !important;
+      }
+
+      .col {
+        padding-left: 0px;
+        width: 100%;
+        padding-right: 0px;
+      }
+    }
+  }
+
+  .basemap-tiles {
+    padding-right: 10px;
+  }
+
+  hr {
+    width: 85%;
+    margin-left: 15px;
+    float: right;
+  }
+}
+
+.basemap-tiles {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  -webkit-flex: 1;
+
+  .tile-wrapper {
+    float: left;
+  }
+
+  label {
+    width: 68px;
+    min-height: 68px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position-y: 1px;
+
+    span {
+      background-color: $white;
+      padding-right: 3px;
+      font-size: 0.7857rem;
+    }
+
+    &.selected {
+      border: solid 3px $basemap-selected;
+
+      span {
+        display: block;
+        float: left;
+      }
+    }
+  }
+}
+
+
+/* basemap chevron toggle */
+.btn-basemap {
+  &.on {
+    .fa-chevron-down {
+      display: block;
+    }
+
+    .fa-chevron-up {
+      display: none;
+    }
+  }
+
+  .fa-chevron-down {
+    display: none;
+  }
+
+  .fa-chevron-up {
+    display: block;
+  }
+}

@@ -1,0 +1,109 @@
+.map-view {
+  .btn-wrapper {
+    padding: 5px 0px;
+
+    .btn {
+      margin: 0px 10px 0px 0px;
+    }
+  }
+
+  .view-row {
+    margin-bottom: 15px;
+    @include clearfix;
+
+    .form-group {
+      .form-control {
+        margin-top: 10px;
+        float: left;
+      }
+
+      .btn-save-as {
+        float: left;
+        margin: 10px 0px 0px 10px;
+      }
+    }
+
+
+
+    .combobox {
+      margin-top: 10px;
+    }
+  }
+
+  .favourite {
+    padding: 16px 0px 0px 10px;
+
+    .fa-star{
+        &.faded{
+            opacity: 0.2;
+        }
+    }
+  }
+
+  #deleteConfirmation {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    transition: all 0.5s;
+
+    &.fade {
+      visibility: hidden;
+    }
+  }
+
+}
+
+.cdk-overlay-container {
+  position: absolute;
+  width: 500px;
+  height: 348px;
+  z-index: 2002;
+  top: 30px;
+  left: calc(50% - 250px);
+
+  &:empty {
+    display: none;
+  }
+}
+
+.mat-dialog-container {
+  padding: 0px;
+  transition: none;
+  width: 500px;
+  height: 348px;
+  background-color: $white;
+  position: absolute;
+  border-radius: 0;
+
+  .mat-dialog-title {
+    padding: 1rem;
+    margin: 0px;
+    background-color: $gray-200;
+    border-bottom: $modal-header-border-width solid $modal-header-border-color;
+
+    h4 {
+      margin: 0;
+      line-height: 1.5rem;
+    }
+  }
+
+  .mat-dialog-content {
+    padding: 1rem;
+    margin: 0px;
+  }
+
+  .mat-dialog-actions {
+    margin-bottom: 0px;
+    padding: 1rem;
+
+    .mat-button{
+      &:active{
+        color: $black;
+      }
+    }
+  }
+}
+

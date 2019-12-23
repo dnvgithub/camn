@@ -1,0 +1,80 @@
+<ng-template #mapViewContent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Manage Map Views</h4>
+  </div>
+  <div class="modal-body">
+    <div class="view-row">
+      <span>
+        Save current view as:
+      </span>
+      <div class="form-group">
+        <input #mapViewInput
+               type="text"
+               class="form-control"
+               (keyup)="onInputKeyUp(mapViewInput.value)"
+               style="width: 300px;">
+        <button [disabled]="saveAsDisabled()" (click)="saveAs()" class="btn btn-primary btn-save-as" title="Save Map View As">Save As</button>
+      </div>
+    </div>
+
+    <div class="view-row">
+      <span>
+        Existing views:
+      </span>
+      <div style="display: flex;">
+        <ng-select [items]="_mapViewState.mapViews"
+                   bindLabel="bookmarkName"
+                   bindValue="id"
+                   [(ngModel)]="selectedMapViewId"
+                   (change)="onSelectMapViewChange()"
+                   appendTo="body"
+                   style="width: 300px;"
+                   class="combobox">
+          <ng-template ng-label-tmp let-item="item">
+            {{item.bookmarkName}}
+          </ng-template>
+          <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+           {{item.bookmarkName}}
+            <div style="float: right;">
+              <div *ngIf="isDefault(item.id)"><i class="fas fa-star"></i></div>
+            </div>
+          </ng-template>
+        </ng-select>
+
+        <div *ngIf="userDefaultSelectEnabled()" class="favourite">
+          <div *ngIf="mapViewUserDefaultChecked" title="unset as default view"><span (click)="userDefaultCheckbox()"><i class="fas fa-star"></i></span></div>
+          <div *ngIf="!mapViewUserDefaultChecked"><span (click)="userDefaultCheckbox()" title="set as default view"><i class="fas fa-star faded"></i></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="btn-wrapper">
+      <button [disabled]="saveDisabled()" (click)="save()" class="btn btn-primary" title="Save Map View">Save</button>
+      <button [disabled]="deleteDisabled()" (click)="delete()" class="btn btn-primary" title="Delete Map View">Delete</button>
+      <button [disabled]="copyLinkDisabled()" (click)="copyLink()" class="btn btn-primary" title="Copy Map View Link">Copy Link</button>
+    </div>
+    <div id="deleteConfirmation" class="modal-body" [class.fade]="!showDeleteConfirmationDialog">
+        <div class="view-row">
+          <div class="alert alert-danger" role="alert">
+              <strong>Please Confirm!</strong>
+          </div>
+        </div>
+      <div class="view-row">
+          Do you really want to delete this map view?
+      </div>
+      <div class="view-row">
+          This can not be undone...
+      </div>
+      <div class="view-row">
+          <div class="btn-wrapper">
+              <button (click)="confirmDelete()" class="btn btn-danger" title="Delete Map View">Yes, Delete</button>
+              <button (click)="cancelDelete()" class="btn btn-primary float-right" title="Cancel Delete Map View">No, Cancel, Still Need This View</button>
+          </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="modal.close('')" title="Close">Close</button>
+  </div>
+</ng-template>
+

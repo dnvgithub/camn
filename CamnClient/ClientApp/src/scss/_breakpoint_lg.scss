@@ -1,0 +1,90 @@
+/* min-width: 1199.98px */
+@include media-breakpoint-down(lg) {
+  #layerFilterDiv {
+    left: 51px;
+    z-index: 4;
+    width: 312px;
+  }
+
+  .leaflet-popup-content-wrapper {
+    min-width: 170px;
+  }
+
+  .leaflet-draw-tooltip {
+    margin-top: -45px;
+  }
+
+  .popupWrapper {
+    width: auto;
+  }
+
+  .navbar {
+    .save-map-view {
+      span {
+        float: right;
+      }
+    }
+
+    .row {
+      .search-field {
+        padding: 0px 0px 0px 20px;
+
+        .form-group {
+          .input-group {
+            &.search {
+              width: 100%;
+
+              .form-control {
+                float: left;
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #layersDiv {
+    .basemap-container {
+      max-width: 510px;
+    }
+
+    .basemap-list {
+      max-width: 510px;
+
+      .basemap-tiles {
+        display: block;
+
+        .tile-wrapper {
+          label {
+            &.baseMapsImg {
+              width: 70px;
+              height: 70px;
+
+              &.selected {
+                span {
+                  margin-left: 0;
+                }
+              }
+
+              .baseMapsSpan {
+                position: static;
+                margin-left: 0px;
+                width: auto;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1093px) {
+  .headerWrapper {
+    .dnv-alerts {
+      top: 91px;
+    }
+  }
+}

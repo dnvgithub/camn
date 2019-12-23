@@ -1,0 +1,192 @@
+html{
+  font-size: 14px;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif !important;
+  color: $black;
+}
+
+.btn {
+  color: $black;
+  transition: unset;
+  border-radius: 2px;
+
+  &.btn-link {
+    color: $black;
+
+    &:hover {
+      color: $black;
+    }
+  }
+
+  &.btn-primary {
+    background-color: $btn-primary;
+    border-color: $btn-primary;
+    color: $black;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $btn-primary-hover !important;
+      border-color: $btn-primary-hover !important;
+    }
+
+    &:disabled {
+      background-color: $btn-primary-disabled;
+      border-color: $btn-primary-disabled;
+      color: $gray-500;
+
+      &:hover {
+        background-color: $btn-primary-disabled !important;
+        border-color: $btn-primary-disabled !important;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &.btn-secondary {
+    background-color: $white;
+
+    &:hover {
+      background-color: $light-grey;
+      color: $white;
+    }
+  }
+
+  &.btn-danger {
+    color: $white;
+  }
+
+  &.btn-outline-secondary {
+    &:hover {
+      color: $white;
+    }
+  }
+}
+
+a {
+  color: $black;
+  &:hover{
+    color: $dark-grey;
+  }
+}
+
+h1{
+  @include font-size(1.5); /* 24ox */
+}
+
+h2 {
+  @include font-size(1.25); /* 20px */
+}
+h3 {
+  @include font-size(1.125); /* 18px*/
+}
+h4{
+  @include font-size(1); /*16 px*/
+  font-weight: 700;
+}
+
+.btn-chevron {
+  border: none;
+  width: 12px;
+  height: 12px;
+  float: right;
+  color: #333333;
+  opacity: 0.25;
+  margin-top: -5px;
+}
+
+.form-group{
+  &.radio{
+    width: 50%;
+    float: left;
+  }
+
+  &.textarea{
+    clear: both;
+  }
+
+  &.dropdown{
+    width: 50%;
+    display: inline-block;
+    select{
+      width: 98%;
+    }
+    &:nth-child(even){
+      float: right;
+      background-color: #ff0000;
+    }
+    &.clear{
+      clear: both;
+    }
+  }
+
+}
+
+.form-control {
+  &.invalid {
+    border-color: $red;
+  }
+}
+
+.nav-tabs {
+  .nav-link {
+    border: none;
+    padding: 0px 25px;
+    border-bottom: solid 2px transparent;
+    font-weight: bold;
+
+    &:hover {
+      background-color: transparent;
+      border-color: transparent;
+    }
+
+    &.active {
+      background-color: transparent;
+      border-bottom: solid 2px $black;
+    }
+  }
+
+  .nav-item {
+
+    &.show {
+      .nav-link {
+        background-color: $tabs-active;
+        color: $white;
+      }
+    }
+  }
+}
+
+.modal-content {
+  border-radius: 0px;
+  background-clip: unset;
+
+  .modal-header,
+  .modal-footer {
+    background-color: $gray-200;
+    border-radius: 0px;
+  }
+}
+
+.button-wrapper{
+  width: 100%;
+}
+
+.required {
+  color: $red;
+  margin-left: 5px;
+}
+
+.error {
+  color: $red;
+}
+
+.modal{
+  z-index: 2001;
+}
+
+.ng-dropdown-panel{
+  z-index: 2001;
+}

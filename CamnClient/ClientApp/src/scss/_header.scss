@@ -1,0 +1,92 @@
+.headerWrapper{
+  .dnv-alerts{
+    position: fixed;
+    top: 54px;
+    width: 100%;
+    z-index:999;
+    &.hidden{
+      display: none;
+    }
+    a{
+      text-decoration: underline;
+    }
+    button{
+      background-color: transparent;
+      border: none;
+    }
+  }
+}
+
+.navbar {
+  width: 100%;
+  background-color: $header_bg;
+
+  .navbar-brand {
+    color: $white;
+    font-weight: 600; /* semi bold*/
+    margin: 0px 0px 0px 19px;
+    @include font-size(1.5);
+  }
+
+  .save-map-view {
+    color: $white;
+    display: inline-block;
+    line-height: 40px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .row {
+    & > .col {
+      min-width: 355px; /* ie 11*/
+    }
+
+    .search-field {
+      padding: 0px;
+
+      .form-group {
+        .input-group {
+          &.search {
+            display: block;
+            @include clearfix;
+
+            .form-control {
+              width: 75%;
+              float: right;
+            }
+          }
+        }
+
+
+        .clear-search {
+          width: auto;
+          position: absolute;
+          right: 0;
+        }
+      }
+
+      .dropdown-menu {
+        &.show {
+          width: 75%;
+        }
+      }
+    }
+
+    .form-group {
+      margin-bottom: 0;
+      padding-top: 4px;
+
+      &.col {
+        width: 350px;
+        min-width: 0px;
+      }
+
+      .form-control {
+        flex: 1 1 auto;
+        width: 1%;
+      }
+    }
+  }
+}

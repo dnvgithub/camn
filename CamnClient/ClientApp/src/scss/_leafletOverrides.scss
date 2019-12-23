@@ -1,0 +1,31 @@
+/* override leaflet font */
+.leaflet-draw-actions a,
+.leaflet-container,
+.leaflet-draw-tooltip {
+  font-family: 'Open Sans', sans-serif !important;
+}
+
+.leaflet-bottom {
+  &.leaflet-left {
+    margin-left: 50px;
+  }
+}
+
+/* measure tools stroke color */
+leaflet-overlay-pane {
+  .leaflet-interactive {
+    stroke: $feature-path-color;
+
+    &.selected {
+      stroke: $feature-path-highlight;
+    }
+  }
+}
+
+path {
+  &.leaflet-interactive {
+    &.selected {
+      stroke: $feature-highlight;
+    }
+  }
+}

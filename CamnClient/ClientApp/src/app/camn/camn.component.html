@@ -1,0 +1,279 @@
+<div class="headerWrapper" [style.height.px]="headerHeight$">
+  <div class="navbar fixed-top container-fluid" [class.hidefb]="hideFeedback"
+       *ngIf="application$ | async as application" #fixedHeader>
+    <div class="row w-100 mx-0">
+      <div class="col">
+        <h1 class="navbar-brand" title="Climate and Asset Management">Climate and Asset Management <sup>Beta</sup></h1>
+      </div>
+      <div class="col text-center save-map-view" (click)="openMapViewDialog()" title="Open Map View">
+        <span title="Current Map View {{ mapViewComponent.viewName() }}">{{ mapViewComponent.viewName() }}</span>
+        <app-map-view #mapViewComponent [mapViewState]="mapViewState$ | async" (mapViewOutput)="mapViewUpdate($event)">
+        </app-map-view>
+      </div>
+      <div class="col">
+        <div class="search-field">
+          <div class="form-group">
+            <dnv-search [dnvSearchState]="dnvSearchState$ | async" (onSearchClick)="searchClick($event)">
+            </dnv-search>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="application$ | async as application" class="container-fluid p-0" [style.height.px]="panelHeight">
+  <div class="map" [style.height.px]="panelHeight">
+    <dnv-map (mapClick)="onMapClick($event)" (mapMoveChange)="onMoveChange($event)"
+      (mapZoomChange)="onZoomChange($event)" (mapUpdate)="onMapUpdate($event)" [mapState]="mapState$ | async"
+      [layerState]="layerState$ | async">
+    </dnv-map>
+  </div>
+  <div class="row h-100 m-0">
+    <div class="left-nav-wrapper">
+      <div class="bg-white sidebar text-center">
+        <button type="button" class="btn btn-link" [class.active-btn]="application.status === ApplicationStatus.Layer"
+          (click)="toggleLayer(application.status)" title="Layers">
+          <i class="fas fa-layer-group"></i>
+        </button>
+
+        <button type="button" class="btn btn-link" title="Legend"
+          [class.active-btn]="application.status === ApplicationStatus.Legend"
+          (click)="toggleLegend(application.status)">
+          <i class="fas fa-list-alt"></i>
+        </button>
+
+      </div>
+      <div id="layersDiv" [class.fade]="application.status !== ApplicationStatus.Layer" [style.height.px]="panelHeight">
+        <div class="container py-2">
+          <div class="pt-1 ml-2">
+            <div class="d-block title" (click)="toggleLayer(application.status)">
+              <button class="btn btn-link float-left" title="Close Layers">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <h2 class="d-inline-block mt-2" title="Layers">Layers</h2>
+            </div>
+
+          </div>
+          <dnv-layer [layerState]="layerState$ | async" (onSetAvailableLayer)="setAvailableLayer($event)"
+            (onSetActiveLayer)="setActiveLayer($event)" (onLayersOrdered)="onLayersOrdered($event)"
+            (onToggleShowFilterPanel)="onToggleShowFilterPanel($event)">
+          </dnv-layer>
+          <dnv-basemap [baseMapState]="baseMapState$ | async" (onSetBaseMap)="onSetBaseMap($event)"
+            (onToggleBasemaps)="toggleBasemaps()">
+          </dnv-basemap>
+        </div>
+      </div>
+      <div id="layerFilterDiv" class="layers-filter-div"
+        [class.fade]="!(application.status === ApplicationStatus.Layer && (layerState$ | async).showFilterPanel)"
+        [style.height.px]="panelHeight">
+        <div class="pt-1 title-wrapper">
+          <div class="d-block title" (click)="hideFilterPanel()">
+            <button class="btn btn-link float-left" title="Close Layer Filters">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <h2 class="d-inline-block filters-title" title="Layer Filters">Layer Filters</h2>
+          </div>
+
+        </div>
+        <dnv-layer-filter [layerState]="layerState$ | async" [headerHeight]=" headerHeight$" [link]="application.link"
+          (updateFilter)="onUpdateFilter($event)" (zoomToFeatures)="onZoomToFeatures($event)"
+          (exportFeatures)="downloadFeatures($event)">
+        </dnv-layer-filter>
+      </div>
+      <div id="legendDiv" class="legendDiv" [style.height.px]="panelHeight"
+        [class.fade]="!(application.status === ApplicationStatus.Legend)">
+        <div class="container py-2">
+          <div class="p-1 ml-2">
+            <div class="d-block title" (click)="toggleLegend(application.status)">
+              <button class="btn btn-link float-left pl-0" title="Close Legend">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <h2 class="d-inline-block mt-2"
+                *ngIf="(legendState$ | async).legendLayers && (legendState$ | async).legendLayers.length > 0">Legend
+              </h2>
+            </div>
+          </div>
+          <dnv-legend [legendState]="legendState$ | async"></dnv-legend>
+        </div>
+      </div>
+    </div>
+    <div id="rightPanel" class="rightPanel" style="height: 100%;">
+      <div id="featurePanel" class="featurePanel"
+        [class.expanded]="(mapState$ | async).surroundingFeatureList || (mapState$ | async).selectedFeature"
+        [class.full]="(mapState$ | async).expandFeaturePanel" [style.paddingTop.px]="headerHeight$"
+        (panup)="panUp($event)" (swipedown)="panDown($event)">
+        <div id="rightPanelControls" class="float-right rightPanelControls">
+          <label [hidden]="!application.toggleSurroundingFeature"
+            class="carousel__control carousel__control--backward float-left" for="sFeaturesList"
+            (click)="carouselBack()">
+            <i class="fas fa-chevron-left"></i>
+            <span [style.display]="!application.toggleSurroundingFeature ? 'none' : 'inline'"
+              class="carouselTitle">Selected Feature</span>
+          </label>
+          <h4 *ngIf="(mapState$ | async).surroundingFeatureList != null"
+            [style.display]="application.toggleSurroundingFeature ? 'none' : 'inline-block'"
+            class="carouselTitle multi">Multiple Results</h4>
+          <h4 [style.display]="(mapState$ | async).surroundingFeatureList == null ? 'inline' : 'none'"
+            class="carouselTitle">Selected Feature</h4>
+          <button (click)="closeRightPanel()" class="float-right btn-close mb-1" title="Close">
+            <i class="fas fa-times"></i>
+          </button>
+          <button *ngIf="!(mapState$ | async).expandFeaturePanel" (click)="toggleFeaturePanel()"
+            class="btn btn-link float-right p-0 btn-expand" title="Expand Panel">
+            <i class="fas fa-expand"></i>
+          </button>
+          <button *ngIf="(mapState$ | async).expandFeaturePanel" (click)="toggleFeaturePanel()"
+            class="btn btn-link float-right p-0 btn-compress" title="Collapse Panel">
+            <i class="fas fa-compress"></i>
+          </button>
+        </div>
+        <div class="feature-scroll">
+          <div class="carousel-container">
+            <div class="carousel my-carousel carousel--translate">
+              <input class="carousel__activator" type="radio" name="carousel" id="sFeaturesList" checked="checked">
+              <input class="carousel__activator" type="radio" name="carousel" id="sFeaturesDetails">
+              <div class="carousel__track">
+                <ul>
+                  <li *ngIf="(mapState$ | async).surroundingFeatureList" class="carousel__slide resultsList"
+                    [class.hidden]="(mapState$ | async).selectedFeature != null">
+                    <label class="carousel__control carousel__control--forward px-2"
+                      (mouseenter)="mouseEnter(feature.objectId, feature.featureId)" (mouseleave)="mouseLeave()"
+                      for="sFeaturesDetails" *ngFor="let feature of (mapState$ | async).surroundingFeatureList"
+                      (click)="setFeatureDetails(feature.objectId, feature.url, feature.writeUrl, feature.allowInsp, feature.featureId, feature.assetId, feature.hasAttachments)">
+                      {{feature.name}}
+                      <i class="fas fa-chevron-right mt-1 float-right"></i>
+                    </label>
+                  </li>
+                  <li class="carousel__slide" [class.feature]="(mapState$ | async).surroundingFeatureList == null">
+                    <div *ngIf="(mapState$ | async).selectedFeature">
+                      <ul class="nav nav-tabs" id="featureTabs" role="tablist">
+                        <li class="nav-item list-margin">
+                          <a class="nav-link active" id="details-tab" data-toggle="tab" href="#details" role="tab"
+                            aria-controls="details" aria-selected="true" title="Details">Details</a>
+                        </li>
+                        <li class="nav-item"
+                          *ngIf="(mapState$ | async).selectedFeatureLayer && (mapState$ | async).selectedFeatureLayer.allow_inspections;">
+                          <a class="nav-link" id="inspections-tab" data-toggle="tab" href="#inspections" role="tab"
+                            aria-controls="inspections" aria-selected="true">Inspections
+                            <span>({{(application$ | async).selectedFeatureInspections.length}})</span></a>
+                        </li>
+                      </ul>
+                      <div class="tab-content" id="featureTabsContent">
+                        <div class="tab-pane fade show active pt-2" id="details" role="tabpanel"
+                          aria-labelledby="details-tab">
+
+                          <div class="first-header px-2 pt-3"
+                            *ngIf="(mapState$ | async).selectedFeatureLayer.writeUrl != null">
+                            <h4>Attachments: <app-add-attachments header='Add Attachments To Feature'
+                                fileFieldID="feature-attachment"
+                                (uploadAttachmentsPayload)="addAttachmentsToSelectedFeature($event)">
+                              </app-add-attachments>
+                            </h4>
+                          </div>
+                          <div
+                            *ngIf="(application$ | async).selectedFeatureAttachments && (application$ | async).selectedFeatureAttachments.images.length > 0"
+                            class="px-2">
+                            <div
+                              *ngIf="(application$ | async).selectedFeatureAttachments.images.length > 0; else noAttachment">
+                              <ngx-gallery [options]="(application$ | async).galleryOptions"
+                                [images]="(application$ | async).selectedFeatureAttachments.images"
+                                [class.singleImage]="(application$ | async).selectedFeatureAttachments.images.length == 1"
+                                class="feature-gallery"></ngx-gallery>
+                            </div>
+                            <div *ngIf="(application$ | async).selectedFeatureAttachments.others.length > 0"
+                              class="non-image">
+                              <h4>Non-image attachment(s):</h4>
+                              <ul class="attachments">
+                                <li *ngFor="let attachment of (application$ | async).selectedFeatureAttachments.others">
+                                  <a href="{{attachment.url}}">{{attachment.name}}</a> (size: {{attachment.size/1000}}
+                                  MB)
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+
+                          <div class="featureDetails">
+                            <dnv-key-value-section [kvSections]="(application$ | async).kvSections"
+                              [spinnerStatus]="(application$ | async).externalFeature"
+                              [excludesList]="(mapState$ | async).excludeFeatureInfo"
+                              (onExpandPanel)="expandPanel($event)"></dnv-key-value-section>
+                            <dnv-alerts [hidden]="(application$ | async).alertHidden" level="alert-danger"
+                              message="There was an error retrieving data from FlowWorks." (onRetry)="retry()">
+                            </dnv-alerts>
+                          </div>
+                        </div>
+                        <div class="tab-pane fade pt-2" id="inspections" role="tabpanel"
+                          aria-labelledby="inspections-tab"
+                          *ngIf="(mapState$ | async).selectedFeatureLayer && (mapState$ | async).selectedFeatureLayer.allow_inspections;">
+                          <div class="m-0 my-2 px-2">
+
+                            <dnv-dynamic-form
+                              *ngIf="application.selectedFeatureInspections.length !== 0 && application.selectedFeatureInspections[0].inspType !== 'SANMN' || application.selectedFeatureInspections.length === 0 && isAllowInspection()"
+                              buttonLabel="Add Inspection" header="Add Inspection"
+                              [questions]="(inspectionFields$ | async)"
+                              [lastSelectedFeature]="(lastSelectedFeature$ | async)" (Submit)="onSubmit($event)">
+                            </dnv-dynamic-form>
+                          </div>
+                          <ng-template #noInspections>
+                            <div class="no-inspections">There are no inspections</div>
+                          </ng-template>
+                          <div *ngIf="(application$ | async).selectedFeatureInspections.length; let inspLength">
+                            <div *ngIf="inspLength > 0; else noInspections;" class="panels">
+
+                              <div *ngFor="let inspection of (application$ | async).selectedFeatureInspections;"
+                                class="panel">
+
+                                <button type="button" class="btn btn-link px-2"
+                                  [class.collapsed]="(inspLength === 1 && application.lastSelectedInspection === -1) || application.lastSelectedInspection !== inspection.objectId"
+                                  (click)="expandPanel('#insp' + inspection.objectId, inspection.objectId, inspection.inspType, application.cctv.objectId)"
+                                  title="Toggle Inspection">
+                                  <div *ngFor="let kv of inspection.attrs">
+                                    <div *ngIf="kv[0] == 'Created Date'" class="float-left">
+                                      <h4>{{ kv[1]}}</h4>
+                                    </div>
+                                  </div>
+                                  <i class="fas fa-chevron-down fa-xs float-right"></i>
+                                  <i class="fas fa-chevron-up fa-xs float-right"></i>
+                                </button>
+
+                                <div id="insp{{inspection.objectId}}" class="px-2"
+                                  [class.collapse]="(application.lastSelectedInspection === -1) || (inspLength > 1  && application.lastSelectedInspection !== inspection.objectId)"
+                                  data-parent="#inspections">
+                                  <div class="m-0 mb-3 pt-2"
+                                    *ngIf="application.selectedFeatureInspections[0].inspType != 'SANMN'">
+                                    <h4>
+                                      Attachments:<app-add-attachments header='Add Attachments To Inspection'
+                                        fileFieldID="insp-attachment"
+                                        (uploadAttachmentsPayload)="addAttachmentsToInspection(inspection, $event)">
+                                      </app-add-attachments>
+                                    </h4>
+                                  </div>
+                                  <div *ngIf="inspection.attachment && inspection.attachment.length > 0">
+                                    <ngx-gallery [options]="inspection.galleryOptions" [images]="inspection.attachment"
+                                      [class.singleImage]="inspection.attachment.length == 1" class="feature-gallery">
+                                    </ngx-gallery>
+                                  </div>
+                                  <dnv-key-value-list title="Asset Details" [kvpairs]="inspection.attrs"
+                                    [excludesList]="(mapState$ | async).excludeFeatureInfo"></dnv-key-value-list>
+                                  <cctv-notes [cctv]="application.cctv"
+                                    [excludeFeatureList]="(mapState$ | async).excludeFeatureInfo"
+                                    [video]="inspection.video"></cctv-notes>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

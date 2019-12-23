@@ -1,0 +1,169 @@
+#layerFilterDiv {
+  background-color: white;
+  position: absolute;
+  left: 370px;
+  top: 0px;
+  width: 320px;
+  height: 100%;
+  z-index: 2;
+  border-right: solid 1px $light-grey-border;
+  padding: 0px 15px 7px 15px;
+
+
+  &.fade {
+    left: -690px;
+    transition: all 1s;
+  }
+
+
+
+  .title-wrapper {
+    height: 56px;
+    margin-top: 7px;
+
+    .title {
+      position: fixed;
+
+      .filters-title {
+        margin-top: 3px;
+      }
+
+      .btn-link {
+        margin-top: -2px;
+      }
+    }
+  }
+
+  #activeLayersDiv {
+    display: none;
+  }
+
+  .filters-container {
+    overflow-y: auto;
+    width: 280px;
+    position: fixed;
+    margin-top: 90px;
+    bottom: 110px;
+
+    .form-group {
+      font-size: 0.85rem;
+      color: $light-grey;
+
+      input {
+        @include font-size(1);
+      }
+
+      .ng-select {
+        &.ng-select-opened {
+          & > .ng-select-container {
+            border-radius: unset;
+            border-color: transparent;
+            border-bottom-color: $dropdown-border;
+          }
+        }
+
+        .ng-select-container {
+          border-radius: unset;
+          border-color: transparent;
+          border-bottom-color: $dropdown-border;
+
+          .ng-value-container {
+            padding-left: 0px;
+            text-transform: capitalize;
+
+            .ng-value {
+              font-size: 1rem;
+              color: $light-grey;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .filters-bottom {
+    position: fixed;
+    bottom: 0px;
+    height: 100px;
+    padding-bottom: 10px;
+    background-color: #ffffff;
+    width: 290px;
+
+    .form-group {
+      margin-bottom: 0.5rem;
+
+      .btn {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+.downloadFeatures{
+   position: absolute;
+   right: 45px;
+}
+
+
+.filter-toggle {
+  color: $light-grey;
+  border-color: $light-grey;
+  background-color: transparent;
+  width: 78px;
+  height: 30px;
+  margin-top: 5px;
+  position: relative;
+
+  &.btn-secondary {
+    background-color: $button-hover;
+    color: $white;
+    border-color: $button-hover;
+
+    &:hover {
+      background-color: rgba($button-hover, 0.5);
+    }
+  }
+
+  &:focus {
+    box-shadow: none;
+    color: $white;
+    background-color: $button-hover;
+  }
+}
+
+.layerName {
+  width: 270px;
+  margin-top: -28px;
+
+  .label {
+    margin-left: 14px;
+    font-size: 0.85rem;
+    color: $light-grey;
+  }
+
+  strong {
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    width: 100%;
+    padding: 0.25rem 0rem;
+    @include font-size(1.143);
+    width: 100%;
+    display: block;
+    margin-left: 15px;
+  }
+
+  .form-group {
+    button {
+      margin-right: 10px;
+    }
+  }
+}
+
+/* needs to be outside of .filters-container because appendTo=body*/
+.ng-dropdown-panel {
+  .ng-dropdown-panel-items {
+    .ng-option {
+      @include font-size(1);
+      white-space: normal;
+    }
+  }
+}

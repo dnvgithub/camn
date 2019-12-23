@@ -1,0 +1,32 @@
+/* min-width: 557.98px */
+@include media-breakpoint-down(xs) {
+ 
+}
+
+
+@media (max-width: 320px){
+  #layersDiv{
+    .container{
+      padding: 5px;
+    }
+
+    .basemap-container{
+      width: calc(100% - 15px);
+    }
+    .basemap-list{
+      bottom: 150px;
+    }
+  }
+
+  #layerFilterDiv{
+    padding: 0px 0px 7px 0px;
+  }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) and (max-device-width: 1024px) {
+  select,
+  textarea,
+  input {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,224 @@
+.rightPanel {
+  .featurePanel {
+    background-color: $white;
+    width: 280px;
+    height: 100%;
+    position: absolute;
+    right: -290px;
+    top: 0px;
+    padding: 0px 0px 20px 0px;
+    margin-top: 8px;
+    border-left: solid 1px $light-grey-border;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+
+    &.expanded {
+      -moz-user-select: auto !important;
+      -ms-user-select: auto !important;
+      -webkit-user-select: auto !important;
+      user-select: auto !important;
+      right: 0px;
+      -webkit-transition: all 0.5s;
+      transition: all 0.5s;
+    }
+
+    .fa-plus-circle {
+      color: $black;
+      font-size: 1.429rem; /* 20px */
+    }
+
+    .rightPanelControls {
+      width: 100%;
+      padding: 5px 0px;
+
+      .fa-chevron-left {
+        color: $light-grey;
+      }
+    }
+
+    .btn-expand, .btn-compress {
+      display: none;
+    }
+
+    .feature-scroll {
+      margin-top: 30px;
+      max-height: calc(100% - 25px);
+      height: 100%;
+
+      &.scroll {
+        overflow-y: scroll;
+      }
+
+      h2 {
+        font-weight: 700;
+        padding-left: 10px;
+      }
+
+      h3 {
+        margin: 20px 0px 5px 0px;
+        padding: 5px 0px;
+        font-weight: 700;
+        text-align: left;
+
+        &:first-child {
+          margin-top: 0px;
+        }
+      }
+
+      .tab-pane {
+
+        .first-header {
+          padding: 0.375rem 0px;
+        }
+      }
+
+      .no-inspections {
+        padding-left: 15px;
+      }
+
+      .attachments {
+        padding: 0px 0px 0px 12px;
+        margin: 0px 0px 0px 15px;
+
+        li {
+          margin: 5px;
+          padding: 0px;
+        }
+      }
+
+      .feature-gallery {
+        height: 233px !important; /* image height is 75% of gallery height*/
+        width: 100% !important;
+        padding: 0px;
+
+        &.singleImage {
+          height: 175px !important;
+        }
+      }
+
+      .non-image {
+        padding-top: 10px;
+      }
+
+      .featureDetails {
+        padding: 0px 0px 10px 0px;
+
+        h3 {
+          padding-left: 0px;
+        }
+      }
+
+      .panels {
+
+        .panel {
+
+          .btn-link {
+            padding: 5px 0.75rem 5px 0px;
+
+            h4 {
+              margin: 7px 0px;
+              color: $black;
+            }
+          }
+
+          .feature-gallery {
+            padding: 0px 5px 0px 0px;
+          }
+
+          button {
+            width: 100%;
+
+            i {
+              float: right;
+            }
+            /* chevron up expanded*/
+            .fa-chevron-down {
+              display: none;
+              margin-top: 8px;
+            }
+
+            .fa-chevron-up {
+              display: block;
+              margin-top: 8px;
+            }
+
+
+            &.collapsed {
+              /* chevron down collapsed*/
+              .fa-chevron-down {
+                display: block;
+              }
+
+              .fa-chevron-up {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+
+      .key-pair {
+        margin-bottom: 15px;
+
+        .label {
+          font-size: 0.85rem;
+          color: $light-grey;
+          margin: 1rem 0 0 0;
+
+          &:after {
+            content: '';
+          }
+        }
+
+        span {
+          margin: 0px;
+          display: block;
+          font-size: 1rem;
+          color: #555555;
+        }
+      }
+    }
+
+    button {
+      &.btn-close {
+        border: none;
+        background-color: $white;
+        margin: 0;
+      }
+    }
+
+    .no-notes {
+      padding-bottom: 10px;
+    }
+
+    .fa-video {
+      float: right;
+    }
+
+    .ngx-gallery-image-wrapper {
+      background-image: url(../images/placeholder.png);
+      background-size: 100%;
+    }
+  }
+}
+
+#inspectionModal {
+  .modal-footer {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+  }
+}
+
+.files-list {
+  margin: 10px 0px;
+
+  h4 {
+    margin: 0px 0px 0px 0.75rem;
+  }
+}
+
+#attachmentBtn {
+  float: right;
+  cursor: pointer;
+}

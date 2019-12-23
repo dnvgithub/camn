@@ -1,0 +1,29 @@
+<ng-template #content let-modal>
+  <form [formGroup]="formGroup">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">{{header}}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="dismiss()" title="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <dnv-file-uploader formControlName="files" [fileFieldID]="fileFieldID"></dnv-file-uploader>
+    </div>
+    <div class="modal-footer">
+      <div class="button-wrapper">
+        <button type="button" class="btn btn-secondary float-left" (click)="dismiss()" title="Cancel">Cancel</button>
+        <button type="button" class="btn btn-primary float-right" [disabled]="uploadDisabled" (click)="upload()"
+          title="Upload">
+          <ng-container *ngIf="uploadDisabled; then uploadingTemplate; else uploadTemplate">
+          </ng-container>
+        </button>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+<a id="attachmentBtn" (click)="open(content)" title="Add Attachment"><i id="attachmentSvg"
+    class="fas fa-plus-circle"></i></a>
+
+<ng-template #uploadTemplate>Upload</ng-template>
+<ng-template #uploadingTemplate><i class="fas fa-spinner fa-spin"></i> Uploading</ng-template>

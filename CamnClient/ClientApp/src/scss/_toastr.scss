@@ -1,0 +1,63 @@
+.toast-container {
+  .ngx-toastr {
+    background-color: $white;
+    border-width: 1px 1px 1px 4px;
+    border-color: $gray-300;
+    border-radius: 2px;
+    color: $dark-grey;
+    background-image: none;
+    padding: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-bottom: 9px;
+
+    &.toast-warning {
+      border-left-color: #f3d54e;
+    }
+
+    &.toast-error {
+      border-left-color: #AC2B37;
+    }
+
+    &.toast-success {
+      border-left-color: #008139;
+    }
+
+    &.toast-info {
+      border-left-color: #1596D1;
+    }
+
+    a {
+      color: #004C97;
+      font-weight: 600;
+    }
+
+    .btn {
+      box-shadow: 0 1px 1px rgba(0,0,0,0.025);
+
+      &:hover {
+        text-decoration: none !important;
+      }
+    }
+
+    .btn-small {
+      padding: 3px 8px;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      border-radius: 2px;
+    }
+
+    .btn-default {
+      color: $dark-grey;
+      background-color: $gray-100;
+      border-color: $gray-300;
+
+      &:hover {
+        background-color: $gray-400;
+      }
+    }
+
+    .toast-close-button{
+      color: $dark-grey;
+    }
+  }
+}

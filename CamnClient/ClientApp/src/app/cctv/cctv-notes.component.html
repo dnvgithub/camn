@@ -1,0 +1,13 @@
+<div>
+  <h4>Observation Details <a *ngIf="video" target="_blank" href="{{video}}"><i class="fas fa-video"></i></a></h4>
+</div>
+<div *ngIf="cctv.cctvData.length > 0; else noNotes">
+    <div *ngFor="let notes of cctv.cctvData; trackBy: trackByFn">
+        <h4>{{notes.title}}</h4>
+        <ngx-gallery *ngIf="notes.img.length" [options]="cctv.galleryOptions" [images]="notes.img"
+        class="feature-gallery"></ngx-gallery>
+        <dnv-key-value-list title="Observation Details" [kvpairs]="notes.kvPair" [excludesList]="excludeFeatureList">
+        </dnv-key-value-list>
+    </div>
+</div>
+<ng-template #noNotes><div class="no-notes">No notes found</div></ng-template>

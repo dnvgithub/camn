@@ -1,0 +1,24 @@
+﻿@using Newtonsoft.Json
+@using Newtonsoft.Json.Serialization
+
+@{
+    Layout = "_Layout";
+    var appConfig = Json.Serialize(Model);
+}
+
+<script>
+    window['appConfig'] = @appConfig;
+</script>
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
+
+<app-root>Loading...</app-root>
+
+<script src="~/runtime.js"></script>
+<script src="~/polyfills.js"></script>
+<script src="~/scripts.js"></script>
+<environment include="Development">
+    <script src="~/vendor.js"></script>
+    <link href="~/styles.css" rel="stylesheet" />
+</environment>
+<script src="~/main.js"></script>
