@@ -19,7 +19,7 @@ The CAMN Application contributes to mitigating climate change vulnerability by e
 ## Installation & Usage
 
 -   Clone this repo
--   Update `dnv-lib` path in [package.json](package.json) to reference output from the [app_framework](https://github.com/dnvgithub/app_framework) project.
+-   Update `dnv-lib` path in [`CamnClient/ClientApp/package.json`](CamnClient/ClientApp/package.json) to reference output from the [app_framework](https://github.com/dnvgithub/app_framework) project.
 -   In the `CamnClient/ClientApp` directory, run `npm install --no-optional`
 -   In the `CamnClient/ClientApp` directory, run `npm run build` to build
 
