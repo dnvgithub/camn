@@ -36,7 +36,7 @@
     "core-js": "^2.6.5",
     "dnv-lib": "file:../../../app_framework/dist/dnv-lib",
     "hammerjs": "^2.0.8",
-    "jquery": "3.4.1",
+    "jquery": "3.5.0",
     "ngx-clipboard": "^12.1.2",
     "ngx-gallery": "^5.10.0",
     "ngx-toastr": "^10.0.4",
