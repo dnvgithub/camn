@@ -63,7 +63,7 @@
     "karma-coverage-istanbul-reporter": "~2.0.5",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "proj4": "^2.5.0",
     "proj4leaflet": "^1.0.2"
   },
